@@ -1,9 +1,19 @@
+# ICONS =======================================================================
+
+icon_start="┌"
+icon_user="💁"
+icon_host="💻 "
+icon_directory="📁"
+icon_branch="🌿"
+icon_end="└❯"
+
+
 SCM_THEME_PROMPT_PREFIX=""
 SCM_THEME_PROMPT_SUFFIX=""
 
 SCM_THEME_PROMPT_DIRTY=" ${bold_red}✗${normal}"
 SCM_THEME_PROMPT_CLEAN=" ${bold_green}✓${normal}"
-SCM_GIT_CHAR="${bold_cyan}±${normal}"
+SCM_GIT_CHAR="${bold_cyan}${icon_branch}${normal}"
 SCM_SVN_CHAR="${bold_green}⑆${normal}"
 SCM_HG_CHAR="${bold_red}☿${normal}"
 
@@ -70,11 +80,10 @@ prompt() {
 
     # nice prompt
     case "`id -u`" in
-        0) PS1="${TITLEBAR}[$my_ps_root][$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
+        0) PS1="${TITLEBAR}$icon_user$my_ps_root[$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
 $ "
         ;;
-      *) PS1="${TITLEBAR}[$my_ps_user][$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)$(__my_venv_prompt)[${cyan}\w${normal}]$(is_vim_shell)
-$ "
+      *) PS1="${TITLEBAR}${icon_start}${icon_user}$my_ps_user${icon_host}$my_ps_host$(modern_scm_prompt)$(__my_rvm_ruby_version)$(__my_venv_prompt)[${cyan}\w${normal}]$(is_vim_shell)\n${icon_end}$ "
         ;;
     esac
 }
